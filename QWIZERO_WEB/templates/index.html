@@ -112,34 +112,108 @@
             color: #fff; 
         }
 
-        /* --- А ТЕПЕРЬ НАСТРОЙКИ ТОЛЬКО ДЛЯ ТЕЛЕФОНОВ --- */
-        @media (max-width: 768px) {
-            .content-wrapper { margin-top: 100px; width: 95%; }
-            
+       /* --- 1. БАЗОВЫЕ НАСТРОЙКИ (ДЛЯ ПК) --- */
+        :root {
+            --accent: #00a2ff;
+            --accent-glow: rgba(0, 162, 255, 0.6);
+            --bg-dark: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --success: #34c759;
+            --error: #ff3b30;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% -20%, #1a1a2e 0%, var(--bg-dark) 80%);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            padding-bottom: 100px;
+        }
+
+        /* Возвращаем жесткую ширину для ПК, чтобы сайт не «плыл» */
+        .content-wrapper { 
+            position: relative; 
+            z-index: 10; 
+            width: 1000px; /* Фиксируем ширину для ПК */
+            margin-top: 140px; 
+        }
+
+        .main-card {
+            background: var(--card-bg); 
+            backdrop-filter: blur(60px); 
+            border: 1px solid var(--border);
+            border-radius: 60px; 
+            padding: 60px;
+            box-shadow: 0 80px 180px rgba(0,0,0,0.8);
+        }
+
+        /* Возвращаем сетку в 2 колонки для ПК */
+        .config-grid {
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 35px;
+            background: rgba(0,0,0,0.5); 
+            padding: 45px; 
+            border-radius: 45px; 
+            margin-top: 40px;
+        }
+
+        .canvas-area { 
+            font-family: "Courier New", monospace; 
+            font-size: 11px; 
+            line-height: 11px; 
+            padding: 40px; 
+            white-space: pre; 
+            display: inline-block; 
+            color: #fff; 
+        }
+
+        .output-wrapper { 
+            background: #000; 
+            border-radius: 40px; 
+            margin: 40px 0; 
+            height: 550px; 
+            overflow: auto; 
+            border: 1px solid var(--border); 
+        }
+
+        /* --- 2. НАСТРОЙКИ ТОЛЬКО ДЛЯ ТЕЛЕФОНОВ (MOBILE) --- */
+        @media (max-width: 1024px) {
+            .content-wrapper { 
+                width: 95%; /* На мобилках переходим на проценты */
+                margin-top: 100px;
+            }
+
             .main-card { 
-                padding: 30px 15px; /* Уменьшаем отступы только на мобилках */
+                padding: 30px 20px; 
                 border-radius: 30px; 
+            }
+
+            .config-grid { 
+                grid-template-columns: 1fr; /* На мобилке — в один столбец */
+                padding: 25px;
+                gap: 20px;
+            }
+
+            .canvas-area { 
+                font-size: 6px; /* Уменьшаем арт только на маленьких экранах */
+                line-height: 6px; 
+                padding: 15px; 
             }
 
             h1#header { 
                 font-size: 1.2rem; 
                 letter-spacing: 4px; 
             }
-
-            .config-grid { 
-                grid-template-columns: 1fr; /* Строго в один столбец */
-                padding: 20px;
-                gap: 20px;
-            }
-
-            .canvas-area { 
-                font-size: 6px; /* Мелкий шрифт только на мобилках */
-                line-height: 6px; 
-                padding: 15px; 
-            }
-
-            .top-nav { padding: 0 15px; }
-            .lang-btn { padding: 8px 15px; font-size: 0.7rem; }
+            
+            .top-nav { padding: 0 20px; }
         }
     </style>
 </head>
@@ -374,4 +448,5 @@
 </body>
 
 </html>
+
 
